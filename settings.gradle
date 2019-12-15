@@ -1,4 +1,4 @@
-include ':dkplayer-sample', ':dkplayer-videocache'
+include ':dkplayer-sample', ':dkplayer-videocache', ':custom-sample'
 include ':dkplayer-java'
 include ':dkplayer-ui'
 include 'dkplayer-players:ijk'
