@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.dueeeke.custom.custom.VideoViewRepository;
 import com.dueeeke.videocontroller.StandardVideoController;
 import com.dueeeke.videocontroller.component.CompleteView;
 import com.dueeeke.videocontroller.component.ErrorView;
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         videoVV = findViewById(R.id.videoVV);
+        VideoViewRepository.getInstance().addVideoView(videoVV);
+
         setupVideoController();
 
         videoVV.setUrl("http://34.92.158.191:8080/test-hd.mp4");
@@ -45,5 +48,26 @@ public class MainActivity extends AppCompatActivity {
         controller.addControlComponent(gestureControlView);
         titleView.setTitle("视频标题");
         videoVV.setVideoController(controller);
+    }
+
+    @Override protected void onPause() {
+        super.onPause();
+        VideoViewRepository.getInstance().pause(this);
+    }
+
+    @Override protected void onPostResume() {
+        super.onPostResume();
+        VideoViewRepository.getInstance().resume(this);
+    }
+
+    @Override protected void onDestroy() {
+        super.onDestroy();
+        VideoViewRepository.getInstance().releaseVideoView(this);
+    }
+
+    @Override public void onBackPressed() {
+        if (!VideoViewRepository.getInstance().onBackPressed(this)) {
+            super.onBackPressed();
+        }
     }
 }
