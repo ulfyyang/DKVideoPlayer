@@ -19,15 +19,15 @@ public class PortraitWhenFullScreenController extends StandardVideoController {
 
     private View mFullScreen;
 
-    public PortraitWhenFullScreenController(@NonNull Context context) {
+    public PortraitWhenFullScreenController(Context context) {
         this(context, null);
     }
 
-    public PortraitWhenFullScreenController(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public PortraitWhenFullScreenController(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public PortraitWhenFullScreenController(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public PortraitWhenFullScreenController(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

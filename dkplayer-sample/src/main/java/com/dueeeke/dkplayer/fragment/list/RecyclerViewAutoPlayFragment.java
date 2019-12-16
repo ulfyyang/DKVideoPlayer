@@ -22,7 +22,7 @@ public class RecyclerViewAutoPlayFragment extends RecyclerViewFragment {
         mRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
             @Override
-            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 if (newState == SCROLL_STATE_IDLE) { //滚动停止
                     autoPlayVideo(recyclerView);

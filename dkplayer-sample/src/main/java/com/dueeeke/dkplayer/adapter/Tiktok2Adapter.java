@@ -42,13 +42,13 @@ public class Tiktok2Adapter extends PagerAdapter {
     }
 
     @Override
-    public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
+    public boolean isViewFromObject(View view, Object o) {
         return view == o;
     }
 
     @NonNull
     @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, int position) {
         Context context = container.getContext();
         View view = null;
         if (mViewPool.size() > 0) {//取第一个进行复用
@@ -78,7 +78,7 @@ public class Tiktok2Adapter extends PagerAdapter {
     }
 
     @Override
-    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+    public void destroyItem(ViewGroup container, int position, Object object) {
         View itemView = (View) object;
         container.removeView(itemView);
         TiktokBean item = mVideoBeans.get(position);

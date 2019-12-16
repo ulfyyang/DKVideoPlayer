@@ -71,14 +71,14 @@ public class ViewPagerLayoutManager extends LinearLayoutManager implements Recyc
     }
 
     @Override
-    public void onChildViewAttachedToWindow(@NonNull View view) {
+    public void onChildViewAttachedToWindow(View view) {
         if (mOnViewPagerListener != null && getChildCount() == 1) {
             mOnViewPagerListener.onInitComplete();
         }
     }
 
     @Override
-    public void onChildViewDetachedFromWindow(@NonNull View view) {
+    public void onChildViewDetachedFromWindow(View view) {
         if (mDrift >= 0){
             if (mOnViewPagerListener != null) mOnViewPagerListener.onPageRelease(true,getPosition(view));
         }else {

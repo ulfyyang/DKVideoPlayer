@@ -27,15 +27,15 @@ public class PipControlView extends FrameLayout implements IControlComponent, Vi
     private ImageView mClose;
     private ProgressBar mLoading;
 
-    public PipControlView(@NonNull Context context) {
+    public PipControlView(Context context) {
         super(context);
     }
 
-    public PipControlView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public PipControlView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public PipControlView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public PipControlView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -67,7 +67,7 @@ public class PipControlView extends FrameLayout implements IControlComponent, Vi
     }
 
     @Override
-    public void attach(@NonNull ControlWrapper controlWrapper) {
+    public void attach(ControlWrapper controlWrapper) {
         mControlWrapper = controlWrapper;
     }
 

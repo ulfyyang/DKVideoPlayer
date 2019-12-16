@@ -24,7 +24,7 @@ public class DebugActivity extends BaseActivity {
     private DebugTextViewHelper mHelper;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDebugInfo = new TextView(this);
         mDebugInfo.setTextColor(ContextCompat.getColor(this, android.R.color.white));
@@ -32,7 +32,7 @@ public class DebugActivity extends BaseActivity {
     }
 
     @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+    protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         params.gravity = Gravity.CENTER_HORIZONTAL;

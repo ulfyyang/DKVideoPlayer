@@ -1,8 +1,6 @@
 package com.dueeeke.videoplayer.player;
 
 
-import androidx.annotation.Nullable;
-
 import com.dueeeke.videoplayer.render.RenderViewFactory;
 import com.dueeeke.videoplayer.render.TextureRenderViewFactory;
 
@@ -99,7 +97,7 @@ public class VideoViewConfig {
         /**
          * 设置进度管理器，用于保存播放进度
          */
-        public Builder setProgressManager(@Nullable ProgressManager progressManager) {
+        public Builder setProgressManager(ProgressManager progressManager) {
             mProgressManager = progressManager;
             return this;
         }

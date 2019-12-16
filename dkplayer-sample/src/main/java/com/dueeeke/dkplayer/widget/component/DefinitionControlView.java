@@ -43,15 +43,15 @@ public class DefinitionControlView extends VodControlView {
 
     private OnRateSwitchListener mOnRateSwitchListener;
 
-    public DefinitionControlView(@NonNull Context context) {
+    public DefinitionControlView(Context context) {
         super(context);
     }
 
-    public DefinitionControlView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DefinitionControlView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DefinitionControlView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public DefinitionControlView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

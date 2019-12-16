@@ -15,15 +15,15 @@ import com.dueeeke.videoplayer.controller.BaseVideoController;
 
 public class TikTokController extends BaseVideoController {
 
-    public TikTokController(@NonNull Context context) {
+    public TikTokController(Context context) {
         super(context);
     }
 
-    public TikTokController(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public TikTokController(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public TikTokController(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public TikTokController(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

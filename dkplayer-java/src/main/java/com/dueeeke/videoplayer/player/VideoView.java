@@ -17,9 +17,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.dueeeke.videoplayer.R;
 import com.dueeeke.videoplayer.controller.BaseVideoController;
 import com.dueeeke.videoplayer.controller.MediaPlayerControl;
@@ -43,7 +40,7 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
 
     protected P mMediaPlayer;//播放器
     protected PlayerFactory<P> mPlayerFactory;//工厂类，用于实例化播放核心
-    @Nullable
+
     protected BaseVideoController mVideoController;//控制器
 
     protected IRenderView mRenderView;
@@ -56,7 +53,7 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
     /**
      * 通过添加和移除这个view来实现隐藏和显示navigation bar，可以避免出现一些奇奇怪怪的问题
      */
-    @Nullable
+
     protected View mHideNavBarView;
     protected static final int FULLSCREEN_FLAGS = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
@@ -105,7 +102,7 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
      * 监听系统中音频焦点改变，见{@link #setEnableAudioFocus(boolean)}
      */
     protected boolean mEnableAudioFocus;
-    @Nullable
+
     protected AudioFocusHelper mAudioFocusHelper;
 
     /**
@@ -116,7 +113,7 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
     /**
      * 进度管理器，设置之后播放器会记录播放进度，以便下次播放恢复进度
      */
-    @Nullable
+
     protected ProgressManager mProgressManager;
 
     /**
@@ -129,15 +126,15 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
      */
     private int mPlayerBackgroundColor;
 
-    public VideoView(@NonNull Context context) {
+    public VideoView(Context context) {
         this(context, null);
     }
 
-    public VideoView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public VideoView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public VideoView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public VideoView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         //读取全局配置
@@ -659,7 +656,7 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
     /**
      * 设置进度管理器，用于保存播放进度
      */
-    public void setProgressManager(@Nullable ProgressManager progressManager) {
+    public void setProgressManager(ProgressManager progressManager) {
         this.mProgressManager = progressManager;
     }
 
@@ -880,7 +877,7 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
     /**
      * 设置控制器，传null表示移除控制器
      */
-    public void setVideoController(@Nullable BaseVideoController mediaController) {
+    public void setVideoController(BaseVideoController mediaController) {
         mPlayerContainer.removeView(mVideoController);
         mVideoController = mediaController;
         if (mediaController != null) {
@@ -1008,7 +1005,7 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
     /**
      * 添加一个播放状态监听器，播放状态发生变化时将会调用。
      */
-    public void addOnStateChangeListener(@NonNull OnStateChangeListener listener) {
+    public void addOnStateChangeListener(OnStateChangeListener listener) {
         if (mOnStateChangeListeners == null) {
             mOnStateChangeListeners = new ArrayList<>();
         }
@@ -1018,7 +1015,7 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
     /**
      * 移除某个播放状态监听
      */
-    public void removeOnStateChangeListener(@NonNull OnStateChangeListener listener) {
+    public void removeOnStateChangeListener(OnStateChangeListener listener) {
         if (mOnStateChangeListeners != null) {
             mOnStateChangeListeners.remove(listener);
         }
@@ -1028,7 +1025,7 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
      * 设置一个播放状态监听器，播放状态发生变化时将会调用，
      * 如果你想同时设置多个监听器，推荐 {@link #addOnStateChangeListener(OnStateChangeListener)}。
      */
-    public void setOnStateChangeListener(@NonNull OnStateChangeListener listener) {
+    public void setOnStateChangeListener(OnStateChangeListener listener) {
         if (mOnStateChangeListeners == null) {
             mOnStateChangeListeners = new ArrayList<>();
         } else {

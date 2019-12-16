@@ -49,7 +49,7 @@ public class TikTokAdapter extends RecyclerView.Adapter<TikTokAdapter.VideoHolde
     }
 
     @Override
-    public void onViewDetachedFromWindow(@NonNull VideoHolder holder) {
+    public void onViewDetachedFromWindow(VideoHolder holder) {
         super.onViewDetachedFromWindow(holder);
         TiktokBean item = videos.get(holder.mPosition);
         PreloadManager.getInstance(holder.itemView.getContext()).removePreloadTask(item.videoDownloadUrl);

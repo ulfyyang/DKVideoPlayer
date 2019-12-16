@@ -11,10 +11,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.annotation.AttrRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.dueeeke.videocontroller.component.CompleteView;
 import com.dueeeke.videocontroller.component.ErrorView;
 import com.dueeeke.videocontroller.component.GestureView;
@@ -38,15 +34,15 @@ public class StandardVideoController extends GestureVideoController implements V
 
     protected ProgressBar mLoadingProgress;
 
-    public StandardVideoController(@NonNull Context context) {
+    public StandardVideoController(Context context) {
         this(context, null);
     }
 
-    public StandardVideoController(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public StandardVideoController(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public StandardVideoController(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
+    public StandardVideoController(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

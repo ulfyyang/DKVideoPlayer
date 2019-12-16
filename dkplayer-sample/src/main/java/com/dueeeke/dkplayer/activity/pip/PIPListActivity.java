@@ -80,7 +80,7 @@ public class PIPListActivity extends BaseActivity implements OnItemChildClickLis
         recyclerView.setAdapter(adapter);
         recyclerView.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
             @Override
-            public void onChildViewAttachedToWindow(@NonNull View view) {
+            public void onChildViewAttachedToWindow(View view) {
                 VideoRecyclerViewAdapter.VideoHolder holder = (VideoRecyclerViewAdapter.VideoHolder) view.getTag();
                 int position = holder.mPosition;
                 if (position == mPIPManager.getPlayingPosition()) {
@@ -89,7 +89,7 @@ public class PIPListActivity extends BaseActivity implements OnItemChildClickLis
             }
 
             @Override
-            public void onChildViewDetachedFromWindow(@NonNull View view) {
+            public void onChildViewDetachedFromWindow(View view) {
                 VideoRecyclerViewAdapter.VideoHolder holder = (VideoRecyclerViewAdapter.VideoHolder) view.getTag();
                 int position = holder.mPosition;
                 if (position == mPIPManager.getPlayingPosition()) {

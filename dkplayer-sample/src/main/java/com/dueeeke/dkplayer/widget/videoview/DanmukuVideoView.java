@@ -44,15 +44,15 @@ public class DanmukuVideoView extends VideoView {
     private BaseDanmakuParser mParser;
 
 
-    public DanmukuVideoView(@NonNull Context context) {
+    public DanmukuVideoView(Context context) {
         super(context);
     }
 
-    public DanmukuVideoView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public DanmukuVideoView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public DanmukuVideoView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public DanmukuVideoView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

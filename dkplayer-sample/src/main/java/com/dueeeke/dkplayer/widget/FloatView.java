@@ -28,7 +28,7 @@ public class FloatView extends FrameLayout{
     private int mDownRawX, mDownRawY;//手指按下时相对于屏幕的坐标
     private int mDownX, mDownY;//手指按下时相对于悬浮窗的坐标
 
-    public FloatView(@NonNull Context context, int x, int y) {
+    public FloatView(Context context, int x, int y) {
         super(context);
         mDownX = x;
         mDownY = y;

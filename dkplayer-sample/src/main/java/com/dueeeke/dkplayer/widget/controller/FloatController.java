@@ -17,11 +17,11 @@ import com.dueeeke.videoplayer.controller.GestureVideoController;
  */
 public class FloatController extends GestureVideoController {
 
-    public FloatController(@NonNull Context context) {
+    public FloatController(Context context) {
         super(context);
     }
 
-    public FloatController(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public FloatController(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 

@@ -10,11 +10,6 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.FrameLayout;
 
-import androidx.annotation.AttrRes;
-import androidx.annotation.CallSuper;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.dueeeke.videoplayer.player.VideoView;
 import com.dueeeke.videoplayer.player.VideoViewManager;
 import com.dueeeke.videoplayer.util.CutoutUtil;
@@ -36,7 +31,7 @@ public abstract class BaseVideoController extends FrameLayout
     //播放器包装类，集合了MediaPlayerControl的api和IVideoController的api
     protected ControlWrapper mControlWrapper;
 
-    @Nullable
+
     protected Activity mActivity;
 
     //控制器是否处于显示状态
@@ -69,16 +64,16 @@ public abstract class BaseVideoController extends FrameLayout
     private Animation mShowAnim;
     private Animation mHideAnim;
 
-    public BaseVideoController(@NonNull Context context) {
+    public BaseVideoController(Context context) {
         this(context, null);
     }
 
-    public BaseVideoController(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public BaseVideoController(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
 
     }
 
-    public BaseVideoController(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
+    public BaseVideoController(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initView();
     }
@@ -107,7 +102,7 @@ public abstract class BaseVideoController extends FrameLayout
     /**
      * 重要：此方法用于将{@link VideoView} 和控制器绑定
      */
-    @CallSuper
+
     public void setMediaPlayer(MediaPlayerControl mediaPlayer) {
         mControlWrapper = new ControlWrapper(mediaPlayer, this);
         //绑定ControlComponent和Controller
@@ -171,7 +166,7 @@ public abstract class BaseVideoController extends FrameLayout
     /**
      * {@link VideoView}调用此方法向控制器设置播放状态
      */
-    @CallSuper
+
     public void setPlayState(int playState) {
         handlePlayStateChanged(playState);
     }
@@ -179,7 +174,7 @@ public abstract class BaseVideoController extends FrameLayout
     /**
      * {@link VideoView}调用此方法向控制器设置播放器状态
      */
-    @CallSuper
+
     public void setPlayerState(final int playerState) {
         handlePlayerStateChanged(playerState);
     }
@@ -451,7 +446,7 @@ public abstract class BaseVideoController extends FrameLayout
 
     private int mOrientation = 0;
 
-    @CallSuper
+
     @Override
     public void onOrientationChanged(int orientation) {
         if (mActivity == null || mActivity.isFinishing()) return;
@@ -565,7 +560,7 @@ public abstract class BaseVideoController extends FrameLayout
     /**
      * 子类重写此方法并在其中更新控制器在不同播放状态下的ui
      */
-    @CallSuper
+
     protected void onPlayStateChanged(int playState) {
         switch (playState) {
             case VideoView.STATE_IDLE:
@@ -597,7 +592,7 @@ public abstract class BaseVideoController extends FrameLayout
     /**
      * 子类重写此方法并在其中更新控制器在不同播放器状态下的ui
      */
-    @CallSuper
+
     protected void onPlayerStateChanged(int playerState) {
         switch (playerState) {
             case VideoView.PLAYER_NORMAL:

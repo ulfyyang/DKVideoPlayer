@@ -66,7 +66,7 @@ public class ListPagerAdapter extends FragmentPagerAdapter {
         return mTitles.size();
     }
 
-    @Nullable
+
     @Override
     public CharSequence getPageTitle(int position) {
         return mTitles.get(position);

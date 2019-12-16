@@ -8,9 +8,6 @@ import android.view.Surface;
 import android.view.TextureView;
 import android.view.View;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.dueeeke.videoplayer.player.AbstractPlayer;
 
 @SuppressLint("ViewConstructor")
@@ -18,7 +15,7 @@ public class TextureRenderView extends TextureView implements IRenderView, Textu
     private MeasureHelper mMeasureHelper;
     private SurfaceTexture mSurfaceTexture;
 
-    @Nullable
+
     private AbstractPlayer mMediaPlayer;
     private Surface mSurface;
 
@@ -32,7 +29,7 @@ public class TextureRenderView extends TextureView implements IRenderView, Textu
     }
 
     @Override
-    public void attachToPlayer(@NonNull AbstractPlayer player) {
+    public void attachToPlayer(AbstractPlayer player) {
         this.mMediaPlayer = player;
     }
 

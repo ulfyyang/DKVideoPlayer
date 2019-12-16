@@ -29,15 +29,15 @@ public class TikTokView extends FrameLayout implements IControlComponent {
     private int mScaledTouchSlop;
     private int mStartX, mStartY;
 
-    public TikTokView(@NonNull Context context) {
+    public TikTokView(Context context) {
         super(context);
     }
 
-    public TikTokView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public TikTokView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public TikTokView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public TikTokView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -78,7 +78,7 @@ public class TikTokView extends FrameLayout implements IControlComponent {
     }
 
     @Override
-    public void attach(@NonNull ControlWrapper controlWrapper) {
+    public void attach(ControlWrapper controlWrapper) {
         mControlWrapper = controlWrapper;
     }
 

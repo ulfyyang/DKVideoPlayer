@@ -30,13 +30,13 @@ public class TikTokListAdapter extends RecyclerView.Adapter<TikTokListAdapter.Ti
 
     @NonNull
     @Override
-    public TikTokListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TikTokListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_tiktok_list, parent, false);
         return new TikTokListViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TikTokListViewHolder holder, int position) {
+    public void onBindViewHolder(TikTokListViewHolder holder, int position) {
         TiktokBean item = data.get(position);
         holder.mTitle.setText(item.title);
         Glide.with(holder.mThumb.getContext())
@@ -62,7 +62,7 @@ public class TikTokListAdapter extends RecyclerView.Adapter<TikTokListAdapter.Ti
 
         public int mPosition;
 
-        public TikTokListViewHolder(@NonNull View itemView) {
+        public TikTokListViewHolder(View itemView) {
             super(itemView);
             mThumb = itemView.findViewById(R.id.iv_thumb);
             mTitle = itemView.findViewById(R.id.tv_title);

@@ -41,7 +41,7 @@ public class SurfaceRenderView extends SurfaceView implements IRenderView, Surfa
     }
 
     @Override
-    public void attachToPlayer(@NonNull AbstractPlayer player) {
+    public void attachToPlayer(AbstractPlayer player) {
         this.mMediaPlayer = player;
     }
 

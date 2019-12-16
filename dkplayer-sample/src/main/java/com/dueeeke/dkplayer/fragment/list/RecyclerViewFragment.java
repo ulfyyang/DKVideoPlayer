@@ -76,12 +76,12 @@ public class RecyclerViewFragment extends BaseFragment implements OnItemChildCli
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.addOnChildAttachStateChangeListener(new RecyclerView.OnChildAttachStateChangeListener() {
             @Override
-            public void onChildViewAttachedToWindow(@NonNull View view) {
+            public void onChildViewAttachedToWindow(View view) {
 
             }
 
             @Override
-            public void onChildViewDetachedFromWindow(@NonNull View view) {
+            public void onChildViewDetachedFromWindow(View view) {
                 FrameLayout playerContainer = view.findViewById(R.id.player_container);
                 View v = playerContainer.getChildAt(0);
                 if (v != null && v == mVideoView && !mVideoView.isFullScreen()) {

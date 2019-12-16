@@ -33,11 +33,11 @@ public class ExoVideoView extends VideoView<CustomExoMediaPlayer> {
         super(context);
     }
 
-    public ExoVideoView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public ExoVideoView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ExoVideoView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public ExoVideoView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

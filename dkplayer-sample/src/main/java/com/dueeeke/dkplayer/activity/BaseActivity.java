@@ -47,7 +47,7 @@ public class BaseActivity<T extends VideoView> extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getLayoutResId() != 0) {
             setContentView(getLayoutResId());

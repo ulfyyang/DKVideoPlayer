@@ -9,12 +9,9 @@ import android.view.ViewConfiguration;
 import android.view.animation.Animation;
 import android.widget.LinearLayout;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.dueeeke.videocontroller.R;
-import com.dueeeke.videoplayer.controller.IControlComponent;
 import com.dueeeke.videoplayer.controller.ControlWrapper;
+import com.dueeeke.videoplayer.controller.IControlComponent;
 import com.dueeeke.videoplayer.player.VideoView;
 
 /**
@@ -32,11 +29,11 @@ public class ErrorView extends LinearLayout implements IControlComponent {
         this(context, null);
     }
 
-    public ErrorView(Context context, @Nullable AttributeSet attrs) {
+    public ErrorView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ErrorView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public ErrorView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -54,7 +51,7 @@ public class ErrorView extends LinearLayout implements IControlComponent {
     }
 
     @Override
-    public void attach(@NonNull ControlWrapper controlWrapper) {
+    public void attach(ControlWrapper controlWrapper) {
         mControlWrapper = controlWrapper;
     }
 

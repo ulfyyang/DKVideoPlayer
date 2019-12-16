@@ -128,7 +128,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
     }
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+    public boolean onNavigationItemSelected(MenuItem menuItem) {
         int index;
         int itemId = menuItem.getItemId();
         switch (itemId) {
@@ -176,7 +176,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     @SuppressLint("MissingSuperCall")
     @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
+    protected void onSaveInstanceState(Bundle outState) {
 
     }
 }

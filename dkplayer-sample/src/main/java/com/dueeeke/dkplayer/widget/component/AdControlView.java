@@ -27,15 +27,15 @@ public class AdControlView extends FrameLayout implements IControlComponent, Vie
 
     private ControlWrapper mControlWrapper;
 
-    public AdControlView(@NonNull Context context) {
+    public AdControlView(Context context) {
         super(context);
     }
 
-    public AdControlView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public AdControlView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public AdControlView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public AdControlView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -64,7 +64,7 @@ public class AdControlView extends FrameLayout implements IControlComponent, Vie
     }
 
     @Override
-    public void attach(@NonNull ControlWrapper controlWrapper) {
+    public void attach(ControlWrapper controlWrapper) {
         mControlWrapper = controlWrapper;
     }
 

@@ -3,11 +3,9 @@ package com.dueeeke.videoplayer.controller;
 import android.view.View;
 import android.view.animation.Animation;
 
-import androidx.annotation.NonNull;
-
 public interface IControlComponent {
 
-    void attach(@NonNull ControlWrapper controlWrapper);
+    void attach(ControlWrapper controlWrapper);
 
     View getView();
 

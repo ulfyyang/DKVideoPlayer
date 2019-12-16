@@ -13,7 +13,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    compileOnly project.ext.annotation
 }
 
 ext {

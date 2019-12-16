@@ -15,12 +15,9 @@ import android.widget.ProgressBar;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.dueeeke.videocontroller.R;
-import com.dueeeke.videoplayer.controller.IControlComponent;
 import com.dueeeke.videoplayer.controller.ControlWrapper;
+import com.dueeeke.videoplayer.controller.IControlComponent;
 import com.dueeeke.videoplayer.player.VideoView;
 import com.dueeeke.videoplayer.util.PlayerUtils;
 
@@ -44,15 +41,15 @@ public class VodControlView extends FrameLayout implements IControlComponent, Vi
 
     private boolean mIsShowBottomProgress = true;
 
-    public VodControlView(@NonNull Context context) {
+    public VodControlView(Context context) {
         super(context);
     }
 
-    public VodControlView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public VodControlView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public VodControlView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public VodControlView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
     
@@ -84,7 +81,7 @@ public class VodControlView extends FrameLayout implements IControlComponent, Vi
     }
 
     @Override
-    public void attach(@NonNull ControlWrapper controlWrapper) {
+    public void attach(ControlWrapper controlWrapper) {
         mControlWrapper = controlWrapper;
     }
 

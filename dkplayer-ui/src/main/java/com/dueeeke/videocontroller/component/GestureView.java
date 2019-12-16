@@ -13,12 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.dueeeke.videocontroller.R;
-import com.dueeeke.videoplayer.controller.IGestureComponent;
 import com.dueeeke.videoplayer.controller.ControlWrapper;
+import com.dueeeke.videoplayer.controller.IGestureComponent;
 import com.dueeeke.videoplayer.player.VideoView;
 
 import static com.dueeeke.videoplayer.util.PlayerUtils.stringForTime;
@@ -28,15 +25,15 @@ import static com.dueeeke.videoplayer.util.PlayerUtils.stringForTime;
  */
 public class GestureView extends FrameLayout implements IGestureComponent {
 
-    public GestureView(@NonNull Context context) {
+    public GestureView(Context context) {
         super(context);
     }
 
-    public GestureView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public GestureView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public GestureView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public GestureView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -59,7 +56,7 @@ public class GestureView extends FrameLayout implements IGestureComponent {
     }
 
     @Override
-    public void attach(@NonNull ControlWrapper controlWrapper) {
+    public void attach(ControlWrapper controlWrapper) {
         mControlWrapper = controlWrapper;
     }
 

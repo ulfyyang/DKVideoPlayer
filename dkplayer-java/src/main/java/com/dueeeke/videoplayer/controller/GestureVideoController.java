@@ -10,9 +10,6 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.dueeeke.videoplayer.player.VideoView;
 import com.dueeeke.videoplayer.util.PlayerUtils;
 
@@ -49,15 +46,15 @@ public abstract class GestureVideoController extends BaseVideoController impleme
     private int mCurPlayState;
 
 
-    public GestureVideoController(@NonNull Context context) {
+    public GestureVideoController(Context context) {
         super(context);
     }
 
-    public GestureVideoController(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public GestureVideoController(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public GestureVideoController(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public GestureVideoController(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

@@ -16,13 +16,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.dueeeke.videocontroller.MarqueeTextView;
 import com.dueeeke.videocontroller.R;
-import com.dueeeke.videoplayer.controller.IControlComponent;
 import com.dueeeke.videoplayer.controller.ControlWrapper;
+import com.dueeeke.videoplayer.controller.IControlComponent;
 import com.dueeeke.videoplayer.player.VideoView;
 import com.dueeeke.videoplayer.util.PlayerUtils;
 
@@ -39,15 +36,15 @@ public class TitleView extends FrameLayout implements IControlComponent {
 
     private BatteryReceiver mBatteryReceiver;
 
-    public TitleView(@NonNull Context context) {
+    public TitleView(Context context) {
         super(context);
     }
 
-    public TitleView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public TitleView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public TitleView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public TitleView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -90,7 +87,7 @@ public class TitleView extends FrameLayout implements IControlComponent {
     }
 
     @Override
-    public void attach(@NonNull ControlWrapper controlWrapper) {
+    public void attach(ControlWrapper controlWrapper) {
         mControlWrapper = controlWrapper;
     }
 

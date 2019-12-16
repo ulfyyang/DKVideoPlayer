@@ -20,15 +20,15 @@ public class IjkVideoView extends VideoView<CustomIjkMediaPlayer> {
     private HashMap<String, Object> mCodecOptions = new HashMap<>();
     private HashMap<String, Object> mSwsOptions = new HashMap<>();
 
-    public IjkVideoView(@NonNull Context context) {
+    public IjkVideoView(Context context) {
         super(context);
     }
 
-    public IjkVideoView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public IjkVideoView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public IjkVideoView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public IjkVideoView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

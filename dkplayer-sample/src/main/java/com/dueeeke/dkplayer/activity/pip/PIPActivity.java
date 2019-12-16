@@ -24,7 +24,7 @@ public class PIPActivity extends BaseActivity {
     private PIPManager mPIPManager;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pip);
         ActionBar actionBar = getSupportActionBar();

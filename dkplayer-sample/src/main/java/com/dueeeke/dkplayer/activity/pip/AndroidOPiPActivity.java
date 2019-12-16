@@ -92,7 +92,7 @@ public class AndroidOPiPActivity extends AppCompatActivity {
     private int mWidthPixels;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pip_android_o);
         mVideoView = findViewById(R.id.player);

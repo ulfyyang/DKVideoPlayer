@@ -25,7 +25,7 @@ public class ParallelPlayActivity extends AppCompatActivity {
     private List<VideoView> mVideoViews = new ArrayList<>();
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parallel_play);
         ActionBar actionBar = getSupportActionBar();
