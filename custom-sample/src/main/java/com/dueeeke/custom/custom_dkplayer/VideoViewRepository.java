@@ -1,4 +1,4 @@
-package com.dueeeke.custom.custom;
+package com.dueeeke.custom.custom_dkplayer;
 
 import android.content.Context;
 import android.util.Log;

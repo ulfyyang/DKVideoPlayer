@@ -1,10 +1,15 @@
 package com.dueeeke.custom;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.AttributeSet;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.dueeeke.custom.custom.VideoViewRepository;
+import com.dueeeke.custom.custom_dkplayer.VideoViewRepository;
 import com.dueeeke.videocontroller.StandardVideoController;
 import com.dueeeke.videocontroller.component.CompleteView;
 import com.dueeeke.videocontroller.component.ErrorView;
@@ -15,56 +20,74 @@ import com.dueeeke.videocontroller.component.VodControlView;
 import com.dueeeke.videoplayer.player.VideoView;
 
 public class MainActivity extends AppCompatActivity {
-    private VideoView videoVV;
+    private VideoView playerVV;
+    private TextView titleTV;
+    private TextView descriptionTV;
+    private Button subset1BT;
+    private Button subset2BT;
+    private Button subset3BT;
+
+    private PrepareView prepareView;
+    private TitleView titleView;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        videoVV = findViewById(R.id.videoVV);
-        VideoViewRepository.getInstance().addVideoView(videoVV);
+        playerVV = findViewById(R.id.playerVV);
+        titleTV = findViewById(R.id.titleTV);
+        descriptionTV = findViewById(R.id.descriptionTV);
+        subset1BT = findViewById(R.id.subset1BT);
+        subset2BT = findViewById(R.id.subset2BT);
+        subset3BT = findViewById(R.id.subset3BT);
 
-        setupVideoController();
-
-        videoVV.setUrl("http://34.92.158.191:8080/test-hd.mp4");
-        videoVV.start();
+        init(getContext(), null);
+        bind();
     }
 
-    private void setupVideoController() {
-        StandardVideoController controller = new StandardVideoController(this);
-        //根据屏幕方向自动进入/退出全屏
-        controller.setEnableOrientation(true);
-        PrepareView prepareView = new PrepareView(this);//准备播放界面
-        controller.addControlComponent(prepareView);
-        controller.addControlComponent(new CompleteView(this));//自动完成播放界面
-        controller.addControlComponent(new ErrorView(this));//错误界面
-        TitleView titleView = new TitleView(this);//标题栏
-        controller.addControlComponent(titleView);
-        VodControlView vodControlView = new VodControlView(this);//点播控制条
-        //是否显示底部进度条。默认显示
-//                vodControlView.showBottomProgress(false);
-        controller.addControlComponent(vodControlView);
-        GestureView gestureControlView = new GestureView(this);//滑动控制视图
-        controller.addControlComponent(gestureControlView);
-        titleView.setTitle("视频标题");
-        videoVV.setVideoController(controller);
+    private void init(Context context, AttributeSet attrs) {
+        prepareView = new PrepareView(getContext());
+        prepareView.setClickStart();
+        titleView = new TitleView(getContext());
+
+        StandardVideoController videoController = new StandardVideoController(getContext());
+        videoController.addControlComponent(prepareView);
+        videoController.addControlComponent(new CompleteView(getContext()));
+        videoController.addControlComponent(new ErrorView(getContext()));
+        videoController.addControlComponent(titleView);
+        videoController.addControlComponent(new VodControlView(getContext()));
+        videoController.addControlComponent(new GestureView(getContext()));
+        playerVV.setVideoController(videoController);
+
+        VideoViewRepository.getInstance().addVideoView(playerVV);
+    }
+
+    private void bind() {
+        ((ImageView)prepareView.findViewById(R.id.thumb)).setImageResource(R.mipmap.ic_video_cover);
+        titleView.setTitle("超级小白");
+        playerVV.setUrl("http://feifei.feifeizuida.com/20191013/20015_a3bffdd7/index.m3u8");
+        // playerVV.start();   // 开始播放，不调用则不自动播放
+
+        titleTV.setText("超级小白");
+        descriptionTV.setText("动画《SUPER SHIRO》的设定为“非常普通的野原一家所养育的小狗小白，实际上是守护世界的超级英雄”。动画由霜山朋久担任总监制，上野贵美子负责剧本。具体播出时间尚未公开。");
+    }
+
+    private Context getContext() {
+        return this;
     }
 
     @Override protected void onPause() {
         super.onPause();
         VideoViewRepository.getInstance().pause(this);
     }
-
-    @Override protected void onPostResume() {
-        super.onPostResume();
+    @Override protected void onResume() {
+        super.onResume();
         VideoViewRepository.getInstance().resume(this);
     }
-
     @Override protected void onDestroy() {
         super.onDestroy();
         VideoViewRepository.getInstance().releaseVideoView(this);
     }
-
     @Override public void onBackPressed() {
         if (!VideoViewRepository.getInstance().onBackPressed(this)) {
             super.onBackPressed();
