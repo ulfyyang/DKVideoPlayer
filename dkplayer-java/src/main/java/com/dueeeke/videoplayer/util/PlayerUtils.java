@@ -19,8 +19,6 @@ import android.view.MotionEvent;
 import android.view.ViewConfiguration;
 import android.view.WindowManager;
 
-import androidx.annotation.NonNull;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -276,8 +274,7 @@ public final class PlayerUtils {
     /**
      * 获取集合的快照
      */
-    @NonNull
-    public static <T> List<T> getSnapshot(@NonNull Collection<T> other) {
+    public static <T> List<T> getSnapshot(Collection<T> other) {
         List<T> result = new ArrayList<>(other.size());
         for (T item : other) {
             if (item != null) {
