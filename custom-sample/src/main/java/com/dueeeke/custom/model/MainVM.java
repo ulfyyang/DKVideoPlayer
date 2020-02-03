@@ -6,12 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainVM {
+    public long videoId;            // 视频ID
     public String title;            // 视频标题
     public String description;      // 视频秒数
     public List<Video> videoList = new ArrayList<>();       // 视频列表
     public int subsetIndex = 0;     // 当前播放到第几集
 
     public MainVM() {
+        // 此处为后台加载的内容
+        videoId = 1;
         title = "超级小白";
         description = "动画《SUPER SHIRO》的设定为“非常普通的野原一家所养育的小狗小白，实际上是守护世界的超级英雄”。动画由霜山朋久担任总监制，上野贵美子负责剧本。具体播出时间尚未公开。";
         videoList.add(new Video("第一集", "http://feifei.feifeizuida.com/20191013/20015_a3bffdd7/index.m3u8"));

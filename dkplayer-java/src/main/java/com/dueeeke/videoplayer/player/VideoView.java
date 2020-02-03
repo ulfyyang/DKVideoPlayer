@@ -636,7 +636,7 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
     /**
      * 一开始播放就seek到预先设置好的位置
      */
-    public void skipPositionWhenPlay(int position) {
+    public void skipPositionWhenPlay(long position) {
         this.mCurrentPosition = position;
     }
 

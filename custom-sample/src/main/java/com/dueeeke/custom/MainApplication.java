@@ -7,9 +7,11 @@ import com.dueeeke.videoplayer.player.VideoViewConfig;
 import com.dueeeke.videoplayer.player.VideoViewManager;
 
 public class MainApplication extends Application {
+    public static Application context;
 
     @Override public void onCreate() {
         super.onCreate();
+        context = this;
         VideoViewManager.setConfig(VideoViewConfig.newBuilder()
                 .setPlayerFactory(ExoMediaPlayerFactory.create())
                 .build());

@@ -14,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.dueeeke.custom.custom_dkplayer.VideoViewRepository;
 import com.dueeeke.custom.domain.Video;
+import com.dueeeke.custom.domain.VideoPlayRecord;
+import com.dueeeke.custom.domain.VideoPlayRecorder;
 import com.dueeeke.custom.model.MainVM;
 import com.dueeeke.videocontroller.StandardVideoController;
 import com.dueeeke.videocontroller.component.CompleteView;
@@ -23,6 +25,10 @@ import com.dueeeke.videocontroller.component.PrepareView;
 import com.dueeeke.videocontroller.component.TitleView;
 import com.dueeeke.videocontroller.component.VodControlView;
 import com.dueeeke.videoplayer.player.VideoView;
+
+import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     private VideoView playerVV;
@@ -35,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
 
     private PrepareView prepareView;
     private TitleView titleView;
+
+    private Timer timer = new Timer();      // 用于周期性的记录播放位置
 
     private MainVM vm = new MainVM();
 
@@ -78,17 +86,26 @@ public class MainActivity extends AppCompatActivity {
                 if (playState == VideoView.STATE_PLAYBACK_COMPLETED) {
                     if (vm.canMoveToNextSubset()) {
                         vm.moveToNextSubset();
-                        resetPlayerUI(true);
+                        resetPlayerUI(false, true);
                     }
                 }
             }
         });
 
         VideoViewRepository.getInstance().addVideoView(playerVV);
+
+        // 定时记录播放进度
+        timer.schedule(new TimerTask() {
+            @Override public void run() {
+                if (playerVV.isPlaying()) {
+                    VideoPlayRecorder.getInstance().updateVideoRecord(vm.videoId, vm.subsetIndex, playerVV.getCurrentPosition());
+                }
+            }
+        }, new Date(), 5000);
     }
 
     private void bind() {
-        resetPlayerUI(false);
+        resetPlayerUI(true, false);
         titleTV.setText(vm.title);
         descriptionTV.setText(vm.description);
         subsetPickLL.setVisibility(vm.showSubsetPicker() ? View.VISIBLE : View.GONE);
@@ -96,9 +113,20 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * 重新设置播放器
+     * @param init  是否是首次重置
+     * @param autoPlay 是否自动播放
      */
-    private void resetPlayerUI(boolean autoPlay) {
+    private void resetPlayerUI(boolean init, boolean autoPlay) {
         Video video = vm.getCurrentSubset();
+
+        // 首次重置设置播放记录：第几集
+        if (init) {
+            VideoPlayRecord record = VideoPlayRecorder.getInstance().getVideoRecordById(vm.videoId);
+            if (record != null) {
+                vm.subsetIndex = record.subsetIndex;
+                playerVV.skipPositionWhenPlay(record.playOffset);     // 该方法参数为int，需要修改源码为long
+            }
+        }
 
         // 设置播放器状态
         if (video == null) {
@@ -136,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
                     vm.moveToSubset(2);
                     break;
             }
-            resetPlayerUI(true);
+            resetPlayerUI(false, true);
         }
     }
 
@@ -155,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
     @Override protected void onDestroy() {
         super.onDestroy();
         VideoViewRepository.getInstance().releaseVideoView(this);
+        timer.cancel();
     }
     @Override public void onBackPressed() {
         if (!VideoViewRepository.getInstance().onBackPressed(this)) {
