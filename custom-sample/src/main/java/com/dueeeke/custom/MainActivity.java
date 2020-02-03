@@ -1,6 +1,7 @@
 package com.dueeeke.custom;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.View;
@@ -98,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
      */
     private void resetPlayerUI(boolean autoPlay) {
         Video video = vm.getCurrentSubset();
+
+        // 设置播放器状态
         if (video == null) {
             ((ImageView)prepareView.findViewById(R.id.thumb)).setImageResource(R.mipmap.ic_video_cover);
             playerVV.release();
@@ -110,6 +113,11 @@ public class MainActivity extends AppCompatActivity {
                 playerVV.start();
             }
         }
+
+        // 设置选集按钮状态（选中为黑色；未选中为灰色）
+        subset1BT.setTextColor(vm.subsetIndex == 0 ? Color.BLACK : Color.GRAY);
+        subset2BT.setTextColor(vm.subsetIndex == 1 ? Color.BLACK : Color.GRAY);
+        subset3BT.setTextColor(vm.subsetIndex == 2 ? Color.BLACK : Color.GRAY);
     }
 
     /**
