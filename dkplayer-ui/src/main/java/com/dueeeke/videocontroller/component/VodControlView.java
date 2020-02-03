@@ -3,9 +3,11 @@ package com.dueeeke.videocontroller.component;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.FrameLayout;
@@ -67,6 +69,11 @@ public class VodControlView extends FrameLayout implements IControlComponent, Vi
         mPlayButton = findViewById(R.id.iv_play);
         mPlayButton.setOnClickListener(this);
         mBottomProgress = findViewById(R.id.bottom_progress);
+
+        //5.1以下系统SeekBar高度需要设置成WRAP_CONTENT
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1) {
+            mVideoProgress.getLayoutParams().height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        }
     }
 
     protected int getLayoutId() {
@@ -132,7 +139,7 @@ public class VodControlView extends FrameLayout implements IControlComponent, Vi
                 setVisibility(GONE);
                 break;
             case VideoView.STATE_PLAYING:
-                mPlayButton.setSelected(mControlWrapper.isPlaying());
+                mPlayButton.setSelected(true);
                 if (mIsShowBottomProgress) {
                     if (mControlWrapper.isShowing()) {
                         mBottomProgress.setVisibility(GONE);
@@ -149,6 +156,8 @@ public class VodControlView extends FrameLayout implements IControlComponent, Vi
                 mControlWrapper.startProgress();
                 break;
             case VideoView.STATE_PAUSED:
+                mPlayButton.setSelected(false);
+                break;
             case VideoView.STATE_BUFFERING:
             case VideoView.STATE_BUFFERED:
                 mPlayButton.setSelected(mControlWrapper.isPlaying());

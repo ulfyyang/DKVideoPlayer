@@ -37,7 +37,9 @@ import master.flame.danmaku.ui.widget.DanmakuView;
 
 /**
  * 包含弹幕的播放器
+ * @deprecated 推荐 {@link com.dueeeke.dkplayer.widget.component.MyDanmakuView}
  */
+@Deprecated
 public class DanmukuVideoView extends VideoView {
     private DanmakuView mDanmakuView;
     private DanmakuContext mContext;
@@ -122,6 +124,14 @@ public class DanmukuVideoView extends VideoView {
         super.seekTo(pos);
         if (isInPlaybackState()) {
             if (mDanmakuView != null) mDanmakuView.seekTo(pos);
+        }
+    }
+
+    @Override
+    public void onCompletion() {
+        super.onCompletion();
+        if (mDanmakuView != null) {
+            mDanmakuView.clearDanmakusOnScreen();
         }
     }
 

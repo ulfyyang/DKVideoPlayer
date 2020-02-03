@@ -35,6 +35,7 @@ public class TitleView extends FrameLayout implements IControlComponent {
     private TextView mSysTime;//系统当前时间
 
     private BatteryReceiver mBatteryReceiver;
+    private boolean mIsRegister;//是否注册BatteryReceiver
 
     public TitleView(Context context) {
         super(context);
@@ -77,13 +78,19 @@ public class TitleView extends FrameLayout implements IControlComponent {
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        getContext().unregisterReceiver(mBatteryReceiver);
+        if (mIsRegister) {
+            getContext().unregisterReceiver(mBatteryReceiver);
+            mIsRegister = false;
+        }
     }
 
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        getContext().registerReceiver(mBatteryReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+        if (!mIsRegister) {
+            getContext().registerReceiver(mBatteryReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+            mIsRegister = true;
+        }
     }
 
     @Override
@@ -135,7 +142,7 @@ public class TitleView extends FrameLayout implements IControlComponent {
     @Override
     public void onPlayerStateChanged(int playerState) {
         if (playerState == VideoView.PLAYER_FULL_SCREEN) {
-            if (mControlWrapper.isShowing()) {
+            if (mControlWrapper.isShowing() && !mControlWrapper.isLocked()) {
                 setVisibility(VISIBLE);
                 mSysTime.setText(PlayerUtils.getCurrentSystemTime());
             }
@@ -170,6 +177,7 @@ public class TitleView extends FrameLayout implements IControlComponent {
             setVisibility(GONE);
         } else {
             setVisibility(VISIBLE);
+            mSysTime.setText(PlayerUtils.getCurrentSystemTime());
         }
     }
 

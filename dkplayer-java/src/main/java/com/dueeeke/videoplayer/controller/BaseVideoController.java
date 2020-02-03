@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.OrientationEventListener;
+import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.FrameLayout;
@@ -115,7 +116,7 @@ public abstract class BaseVideoController extends FrameLayout
     }
 
     /**
-     * 添加控制组件
+     * 添加控制组件，最后面添加的在最下面，合理组织添加顺序，可让ControlComponent位于不同的层级
      */
     public void addControlComponent(IControlComponent... component) {
         for (IControlComponent item : component) {
@@ -124,7 +125,7 @@ public abstract class BaseVideoController extends FrameLayout
     }
 
     /**
-     * 添加控制组件
+     * 添加控制组件，最后面添加的在最下面，合理组织添加顺序，可让ControlComponent位于不同的层级
      *
      * @param isPrivate 是否为独有的组件，如果是就不添加到控制器中
      */
@@ -133,8 +134,9 @@ public abstract class BaseVideoController extends FrameLayout
         if (mControlWrapper != null) {
             component.attach(mControlWrapper);
         }
-        if (!isPrivate) {
-            addView(component.getView(), 0);
+        View view = component.getView();
+        if (view != null && !isPrivate) {
+            addView(view, 0);
         }
     }
 
@@ -257,7 +259,7 @@ public abstract class BaseVideoController extends FrameLayout
     }
 
     /**
-     * 开始刷新进度
+     * 开始刷新进度，注意：需在STATE_PLAYING时调用才会开始刷新进度
      */
     @Override
     public void startProgress() {
@@ -274,33 +276,6 @@ public abstract class BaseVideoController extends FrameLayout
         if (!mIsStartProgress) return;
         removeCallbacks(mShowProgress);
         mIsStartProgress = false;
-    }
-
-    @Override
-    protected void onWindowVisibilityChanged(int visibility) {
-        super.onWindowVisibilityChanged(visibility);
-        if (mIsStartProgress) {
-            if (visibility == VISIBLE) {
-                post(mShowProgress);
-            }
-        }
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (mIsStartProgress) {
-            post(mShowProgress);
-        }
-        checkCutout();
-    }
-
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        if (mIsStartProgress) {
-            removeCallbacks(mShowProgress);
-        }
     }
 
     /**
@@ -330,6 +305,12 @@ public abstract class BaseVideoController extends FrameLayout
      */
     public void setAdaptCutout(boolean adaptCutout) {
         mAdaptCutout = adaptCutout;
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        checkCutout();
     }
 
     /**
