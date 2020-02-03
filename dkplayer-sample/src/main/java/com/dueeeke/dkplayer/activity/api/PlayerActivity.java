@@ -8,8 +8,10 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.dueeeke.dkplayer.R;
-import com.dueeeke.dkplayer.activity.DebugActivity;
+import com.dueeeke.dkplayer.activity.BaseActivity;
 import com.dueeeke.dkplayer.util.IntentKeys;
+import com.dueeeke.dkplayer.widget.component.DebugInfoView;
+import com.dueeeke.dkplayer.widget.component.PlayerMonitor;
 import com.dueeeke.videocontroller.StandardVideoController;
 import com.dueeeke.videocontroller.component.CompleteView;
 import com.dueeeke.videocontroller.component.ErrorView;
@@ -23,10 +25,10 @@ import com.dueeeke.videoplayer.util.L;
 
 /**
  * 播放器演示
- * Created by Devlin_n on 2017/4/7.
+ * Created by dueeeke on 2017/4/7.
  */
 
-public class PlayerActivity extends DebugActivity {
+public class PlayerActivity extends BaseActivity<VideoView> {
 
     private static final String THUMB = "https://cms-bucket.nosdn.127.net/eb411c2810f04ffa8aaafc42052b233820180418095416.jpeg";
 
@@ -101,6 +103,10 @@ public class PlayerActivity extends DebugActivity {
             //适配刘海屏，默认开启
 //            controller.setAdaptCutout(false);
 
+            //在控制器上显示调试信息
+            controller.addControlComponent(new DebugInfoView(this));
+            controller.addControlComponent(new PlayerMonitor());
+
             //如果你不想要UI，不要设置控制器即可
             mVideoView.setVideoController(controller);
 
@@ -109,7 +115,7 @@ public class PlayerActivity extends DebugActivity {
             //保存播放进度
 //            mVideoView.setProgressManager(new ProgressManagerImpl());
             //播放状态监听
-//            mVideoView.addOnVideoViewStateChangeListener(mOnVideoViewStateChangeListener);
+            mVideoView.addOnStateChangeListener(mOnStateChangeListener);
 
             //临时切换播放核心，如需全局请通过VideoConfig配置，详见MyApplication
             //使用IjkPlayer解码
@@ -140,6 +146,8 @@ public class PlayerActivity extends DebugActivity {
                 case VideoView.STATE_IDLE:
                     break;
                 case VideoView.STATE_PREPARING:
+                    //在STATE_PREPARING时设置setMute(true)可实现静音播放
+//                    mVideoView.setMute(true);
                     break;
                 case VideoView.STATE_PREPARED:
                     break;
