@@ -65,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
         bind();
     }
 
+    @Override public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            playerVV.getLayoutParams().height = playerVV.getWidth() * 1080 / 1920;
+            playerVV.requestLayout();
+        }
+    }
+
     private void init(Context context, AttributeSet attrs) {
         prepareView = new PrepareView(getContext());
         prepareView.setClickStart();
