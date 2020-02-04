@@ -46,51 +46,73 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/subsetPickLL"
+            <FrameLayout
+                android:id="@+id/subsetPickFL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="选集"
-                    android:textStyle="bold" />
+                android:layout_marginTop="10dp">
 
                 <LinearLayout
+                    android:id="@+id/subsetPickLL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:orientation="vertical">
 
-                    <Button
-                        android:id="@+id/subset1BT"
-                        android:layout_width="0dp"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="第一集" />
+                        android:gravity="center"
+                        android:text="选集"
+                        android:textStyle="bold" />
 
-                    <Button
-                        android:id="@+id/subset2BT"
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="第二集" />
+                        android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/subset3BT"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="第三集" />
+                        <Button
+                            android:id="@+id/subset1BT"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="第一集" />
+
+                        <Button
+                            android:id="@+id/subset2BT"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="第二集" />
+
+                        <Button
+                            android:id="@+id/subset3BT"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="第三集" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
-            </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/subsetEmptyLL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="暂无播放源" />
+
+                </LinearLayout>
+
+            </FrameLayout>
 
         </LinearLayout>
 
