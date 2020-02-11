@@ -164,10 +164,12 @@ public class MainActivity extends AppCompatActivity {
             // 设置播放器状态
             Video.Subset subset = vm.getCurrentSubset();        // 获取当前选集
             if (subset == null) {
+                // 网络加载的时候不要用占位图，否则会引起闪烁
                 ((ImageView)prepareView.findViewById(R.id.thumb)).setImageResource(vm.video.cover);
                 playerVV.release();
             } else {
                 playerVV.release();
+                // 网络加载的时候不要用占位图，否则会引起闪烁
                 ((ImageView)prepareView.findViewById(R.id.thumb)).setImageResource(vm.video.cover);
                 titleView.setTitle(subset.title);
                 playerVV.setUrl(subset.playUrl);
