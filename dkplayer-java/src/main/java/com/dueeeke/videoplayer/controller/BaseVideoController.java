@@ -28,6 +28,13 @@ import java.util.Map;
 
 /**
  * 控制器基类
+ * 此类集成各种事件的处理逻辑，包括
+ * 1.播放器状态改变: {@link #handlePlayerStateChanged(int)}
+ * 2.播放状态改变: {@link #handlePlayStateChanged(int)}
+ * 3.控制视图的显示和隐藏: {@link #handleVisibilityChanged(boolean, Animation)}
+ * 4.播放进度改变: {@link #handleSetProgress(int, int)}
+ * 5.锁定状态改变: {@link #handleLockStateChanged(boolean)}
+ * 6.设备方向监听: {@link #onOrientationChanged(int)}
  * Created by dueeeke on 2017/4/12.
  */
 public abstract class BaseVideoController extends FrameLayout
@@ -245,7 +252,7 @@ public abstract class BaseVideoController extends FrameLayout
     /**
      * 隐藏播放视图Runnable
      */
-    public final Runnable mFadeOut = new Runnable() {
+    protected final Runnable mFadeOut = new Runnable() {
         @Override
         public void run() {
             hide();
@@ -286,12 +293,12 @@ public abstract class BaseVideoController extends FrameLayout
     /**
      * 刷新进度Runnable
      */
-    private Runnable mShowProgress = new Runnable() {
+    protected Runnable mShowProgress = new Runnable() {
         @Override
         public void run() {
             int pos = setProgress();
             if (mControlWrapper.isPlaying()) {
-                postDelayed(mShowProgress, 1000 - (pos % 1000));
+                postDelayed(this, (long) ((1000  - pos % 1000) / mControlWrapper.getSpeed()));
             } else {
                 mIsStartProgress = false;
             }
@@ -527,8 +534,9 @@ public abstract class BaseVideoController extends FrameLayout
 
     /**
      * 子类重写此方法监听控制的显示和隐藏
+     *
      * @param isVisible 是否可见
-     * @param anim 显示/隐藏动画
+     * @param anim      显示/隐藏动画
      */
     protected void onVisibilityChanged(boolean isVisible, Animation anim) {
 

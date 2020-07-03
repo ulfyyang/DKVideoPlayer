@@ -187,7 +187,7 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
             isStarted = true;
         }
         if (isStarted) {
-            setKeepScreenOn(true);
+            mPlayerContainer.setKeepScreenOn(true);
             if (mAudioFocusHelper != null)
                 mAudioFocusHelper.requestFocus();
         }
@@ -334,7 +334,7 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
             if (mAudioFocusHelper != null) {
                 mAudioFocusHelper.abandonFocus();
             }
-            setKeepScreenOn(false);
+            mPlayerContainer.setKeepScreenOn(false);
         }
     }
 
@@ -349,18 +349,8 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
             if (mAudioFocusHelper != null) {
                 mAudioFocusHelper.requestFocus();
             }
-            setKeepScreenOn(true);
+            mPlayerContainer.setKeepScreenOn(true);
         }
-    }
-
-    /**
-     * 停止播放
-     *
-     * @deprecated 使用 {@link #release()} 代替
-     */
-    @Deprecated
-    public void stopPlayback() {
-        release();
     }
 
     /**
@@ -393,7 +383,7 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
                 mAudioFocusHelper = null;
             }
             //关闭屏幕常亮
-            setKeepScreenOn(false);
+            mPlayerContainer.setKeepScreenOn(false);
             //保存播放进度
             saveProgress();
             //重置播放进度
@@ -451,7 +441,7 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
         }
         addDisplay();
         startPrepare(true);
-        setKeepScreenOn(true);
+        mPlayerContainer.setKeepScreenOn(true);
     }
 
     /**
@@ -528,7 +518,7 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
      */
     @Override
     public void onError() {
-        setKeepScreenOn(false);
+        mPlayerContainer.setKeepScreenOn(false);
         setPlayState(STATE_ERROR);
     }
 
@@ -537,7 +527,7 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
      */
     @Override
     public void onCompletion() {
-        setKeepScreenOn(false);
+        mPlayerContainer.setKeepScreenOn(false);
         mCurrentPosition = 0;
         if (mProgressManager != null) {
             //播放完成，清除进度
@@ -557,7 +547,9 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
                 break;
             case AbstractPlayer.MEDIA_INFO_VIDEO_RENDERING_START: // 视频开始渲染
                 setPlayState(STATE_PLAYING);
-                if (getWindowVisibility() != VISIBLE) pause();
+                if (mPlayerContainer.getWindowVisibility() != VISIBLE) {
+                    pause();
+                }
                 break;
             case AbstractPlayer.MEDIA_INFO_VIDEO_ROTATION_CHANGED:
                 if (mRenderView != null)
@@ -607,6 +599,14 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
         if (isInPlaybackState()) {
             mMediaPlayer.setSpeed(speed);
         }
+    }
+
+    @Override
+    public float getSpeed() {
+        if (isInPlaybackState()) {
+            return mMediaPlayer.getSpeed();
+        }
+        return 1f;
     }
 
     /**
@@ -688,14 +688,6 @@ public class VideoView<P extends AbstractPlayer> extends FrameLayout
             throw new IllegalArgumentException("PlayerFactory can not be null!");
         }
         mPlayerFactory = playerFactory;
-    }
-
-    /**
-     * 支持多开
-     * @deprecated 此api已经无效，你需要自己去控制同时只有一个播放器在播放的效果
-     */
-    @Deprecated
-    public void setEnableParallelPlay(boolean enableParallelPlay) {
     }
 
     /**

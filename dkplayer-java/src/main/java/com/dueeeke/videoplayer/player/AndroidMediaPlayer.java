@@ -11,6 +11,9 @@ import android.view.SurfaceHolder;
 
 import java.util.Map;
 
+/**
+ * 封装系统的MediaPlayer，不推荐，系统的MediaPlayer兼容性较差，建议使用IjkPlayer或者ExoPlayer
+ */
 public class AndroidMediaPlayer extends AbstractPlayer {
 
     protected MediaPlayer mMediaPlayer;
@@ -189,6 +192,19 @@ public class AndroidMediaPlayer extends AbstractPlayer {
                 mPlayerEventListener.onError();
             }
         }
+    }
+
+    @Override
+    public float getSpeed() {
+        // only support above Android M
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            try {
+                return mMediaPlayer.getPlaybackParams().getSpeed();
+            } catch (Exception e) {
+                mPlayerEventListener.onError();
+            }
+        }
+        return 1f;
     }
 
     @Override
