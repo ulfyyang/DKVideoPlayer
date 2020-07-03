@@ -3,9 +3,6 @@ package com.dueeeke.dkplayer.widget.videoview;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.dueeeke.dkplayer.widget.player.CustomIjkMediaPlayer;
 import com.dueeeke.videoplayer.player.PlayerFactory;
 import com.dueeeke.videoplayer.player.VideoView;
@@ -151,7 +148,7 @@ public class IjkVideoView extends VideoView<CustomIjkMediaPlayer> {
 
 
     @Override
-    public void skipPositionWhenPlay(int position) {
+    public void skipPositionWhenPlay(long position) {
         addPlayerOption("seek-at-start", position);
     }
 }
