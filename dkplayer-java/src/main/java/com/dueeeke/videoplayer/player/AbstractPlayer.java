@@ -7,9 +7,9 @@ import android.view.SurfaceHolder;
 import java.util.Map;
 
 /**
+ * 抽象的播放器，继承此接口扩展自己的播放器
  * Created by dueeeke on 2017/12/21.
  */
-
 public abstract class AbstractPlayer {
 
     /**
@@ -44,7 +44,8 @@ public abstract class AbstractPlayer {
 
     /**
      * 设置播放地址
-     * @param path 播放地址
+     *
+     * @param path    播放地址
      * @param headers 播放地址请求头
      */
     public abstract void setDataSource(String path, Map<String, String> headers);
@@ -138,6 +139,11 @@ public abstract class AbstractPlayer {
      * 设置播放速度
      */
     public abstract void setSpeed(float speed);
+
+    /**
+     * 获取播放速度
+     */
+    public abstract float getSpeed();
 
     /**
      * 获取当前缓冲的网速

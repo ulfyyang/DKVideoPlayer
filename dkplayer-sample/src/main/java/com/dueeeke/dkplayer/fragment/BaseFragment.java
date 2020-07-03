@@ -24,8 +24,10 @@ public abstract class BaseFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mRootView = inflater.inflate(getLayoutResId(), container, false);
-        initView();
+        if (mRootView == null) {
+            mRootView = inflater.inflate(getLayoutResId(), container, false);
+            initView();
+        }
         return mRootView;
     }
 

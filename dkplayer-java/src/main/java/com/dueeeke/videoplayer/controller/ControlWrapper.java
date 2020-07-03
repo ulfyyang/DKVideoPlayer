@@ -89,6 +89,11 @@ public class ControlWrapper implements MediaPlayerControl, IVideoController {
     }
 
     @Override
+    public float getSpeed() {
+        return mPlayerControl.getSpeed();
+    }
+
+    @Override
     public long getTcpSpeed() {
         return mPlayerControl.getTcpSpeed();
     }

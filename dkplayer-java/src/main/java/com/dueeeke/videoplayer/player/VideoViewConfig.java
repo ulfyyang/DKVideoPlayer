@@ -19,8 +19,6 @@ public class VideoViewConfig {
 
     public final boolean mEnableAudioFocus;
 
-    public final boolean mEnableParallelPlay;
-
     public final boolean mIsEnableLog;
 
     public final ProgressManager mProgressManager;
@@ -39,7 +37,6 @@ public class VideoViewConfig {
         mPlayOnMobileNetwork = builder.mPlayOnMobileNetwork;
         mEnableAudioFocus = builder.mEnableAudioFocus;
         mProgressManager = builder.mProgressManager;
-        mEnableParallelPlay = builder.mEnableParallelPlay;
         mScreenScaleType = builder.mScreenScaleType;
         if (builder.mPlayerFactory == null) {
             //默认为AndroidMediaPlayer
@@ -63,7 +60,6 @@ public class VideoViewConfig {
         private boolean mPlayOnMobileNetwork;
         private boolean mEnableOrientation;
         private boolean mEnableAudioFocus = true;
-        private boolean mEnableParallelPlay;
         private ProgressManager mProgressManager;
         private PlayerFactory mPlayerFactory;
         private int mScreenScaleType;
@@ -99,16 +95,6 @@ public class VideoViewConfig {
          */
         public Builder setProgressManager(ProgressManager progressManager) {
             mProgressManager = progressManager;
-            return this;
-        }
-
-        /**
-         * 支持多开
-         * @deprecated 此api已经无效，你需要自己去控制同时只有一个VideoView在播放的效果
-         */
-        @Deprecated
-        public Builder setEnableParallelPlay(boolean enableParallelPlay) {
-            mEnableParallelPlay = enableParallelPlay;
             return this;
         }
 
