@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override protected void onDestroy() {
         super.onDestroy();
-        VideoViewRepository.getInstance().releaseVideoView(this);
+        VideoViewRepository.getInstance().releaseVideoView(this, true);
         timer.cancel();     // 注意及时关闭定时器
     }
     @Override public void onBackPressed() {

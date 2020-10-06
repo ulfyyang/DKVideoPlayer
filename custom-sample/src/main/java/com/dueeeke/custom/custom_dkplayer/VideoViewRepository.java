@@ -83,13 +83,15 @@ public final class VideoViewRepository {
      * 释放指定上下文的中的VideoView
      *  通常在Activity.onDestroy中回调
      */
-    public void releaseVideoView(Context context) {
+    public void releaseVideoView(Context context, boolean remove) {
         List<VideoView> videoViewList = videoViewMap.get(context);
         if (videoViewList != null) {
             for (VideoView videoView : videoViewList) {
                 videoView.release();
             }
-            videoViewMap.remove(context);
+            if (remove) {
+                videoViewMap.remove(context);
+            }
         }
         printRepository();
     }
